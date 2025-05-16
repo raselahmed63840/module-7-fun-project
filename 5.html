@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Image Slider</title>
+  <style>
+    #slider {
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+      margin: 20px auto;
+      position: relative;
+    }
+    #slider img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    #slider img.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h2>Image Slider</h2>
+  <div id="slider">
+    <img src="https://via.placeholder.com/300x200/ff7f7f/333333?text=Slide+1" class="active" />
+    <img src="https://via.placeholder.com/300x200/7fbfff/333333?text=Slide+2" />
+    <img src="https://via.placeholder.com/300x200/7fff7f/333333?text=Slide+3" />
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('#slider img');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }, 3000);
+  </script>
+</body>
+</html>

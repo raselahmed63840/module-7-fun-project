@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz Game</title>
+</head>
+<body>
+  <h2>Simple Quiz</h2>
+  <div id="quiz"></div>
+  <button id="submitBtn">Submit</button>
+  <h3 id="score"></h3>
+
+  <script>
+    const quizData = [
+      { question: 'What is 2 + 2?', options: ['3', '4', '5'], answer: '4' },
+      { question: 'Capital of France?', options: ['Berlin', 'Paris', 'London'], answer: 'Paris' },
+      { question: 'JavaScript is a ___?', options: ['Programming Language', 'Coffee', 'Car'], answer: 'Programming Language' }
+    ];
+
+    const quizDiv = document.getElementById('quiz');
+    const submitBtn = document.getElementById('submitBtn');
+    const scoreDisplay = document.getElementById('score');
+
+    quizData.forEach((q, i) => {
+      const div = document.createElement('div');
+      div.innerHTML = `<p>${q.question}</p>` + q.options.map(opt => 
+        `<label><input type="radio" name="q${i}" value="${opt}" /> ${opt}</label><br>`).join('');
+      quizDiv.appendChild(div);
+    });
+
+    submitBtn.addEventListener('click', () => {
+      let score = 0;
+      quizData.forEach((q, i) => {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === q.answer) {
+          score++;
+        }
+      });
+      scoreDisplay.textContent = `You scored ${score} out of ${quizData.length}`;
+    });
+  </script>
+</body>
+</html>

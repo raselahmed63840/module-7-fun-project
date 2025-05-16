@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simple Calculator</title>
+  <style>
+    input, button { padding: 10px; margin: 5px; font-size: 1em; }
+  </style>
+</head>
+<body>
+  <h2>Calculator</h2>
+  <input id="num1" type="number" placeholder="Number 1" />
+  <input id="num2" type="number" placeholder="Number 2" /><br />
+  <button onclick="calculate('+')">+</button>
+  <button onclick="calculate('-')">-</button>
+  <button onclick="calculate('*')">*</button>
+  <button onclick="calculate('/')">/</button>
+
+  <h3>Result: <span id="result"></span></h3>
+
+  <script>
+    function calculate(operator) {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      let result;
+
+      if (isNaN(num1) || isNaN(num2)) {
+        alert('Please enter valid numbers');
+        return;
+      }
+
+      switch(operator) {
+        case '+': result = num1 + num2; break;
+        case '-': result = num1 - num2; break;
+        case '*': result = num1 * num2; break;
+        case '/': result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero'; break;
+      }
+
+      document.getElementById('result').textContent = result;
+    }
+  </script>
+</body>
+</html>
